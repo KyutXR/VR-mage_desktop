@@ -21,6 +21,7 @@ const useWebsocket = (roomId: string) => {
     let baseUrl = import.meta.env.VITE_WS_BASE_URL || "localhost:8080";
     if (isLocalhost) {
       baseUrl = "localhost:8080";
+      console.log("Running on localhost, using local WebSocket server");
     }
     baseUrl = baseUrl.replace(/^(https?|wss?):\/\//, "").replace(/\/$/, "");
     const protocol = isLocalhost ? "ws" : (import.meta.env.VITE_WS_PROTOCOL || "ws");
