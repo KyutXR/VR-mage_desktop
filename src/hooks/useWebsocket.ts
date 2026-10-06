@@ -17,11 +17,11 @@ const useWebsocket = (roomId: string) => {
     if (!roomId) return;
 
     // WebSocket の URL
-    // const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     let baseUrl = import.meta.env.VITE_WS_BASE_URL || "localhost:8080";
-    // if (isLocalhost) {
-    //   baseUrl = "localhost:8080";
-    // }
+    if (isLocalhost) {
+      baseUrl = "localhost:8080";
+    }
     baseUrl = baseUrl.replace(/^(https?|wss?):\/\//, "").replace(/\/$/, "");
     const protocol = isLocalhost ? "ws" : (import.meta.env.VITE_WS_PROTOCOL || "ws");
     const socket = new WebSocket(`${protocol}://${baseUrl}/mobile/${roomId}`);
